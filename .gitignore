@@ -157,5 +157,3 @@ fabric.properties
 
 .envrc
 *.iml
-**/__data
-
