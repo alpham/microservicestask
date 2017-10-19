@@ -14,7 +14,7 @@ services:
     networks:
       - online_net
     ports:
-      - 8080:4200
+      - ${APP_PORT-8080}:4200
   api:
     build: api/
     image: microservices/api:1.0
