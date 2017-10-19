@@ -1,0 +1,78 @@
+version: "3"
+services:
+  frontend:
+    build: frontend/
+    image: microservices/frontend:1.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 100MB
+    networks:
+      - online_net
+    ports:
+      - 8080:4200
+  api:
+    build: api/
+    image: microservices/api:1.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 200MB
+    networks:
+      - online_net
+      - internal_net
+  service_api:
+    build: services/api/
+    image: microservices/service_api:1.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 10MB
+    networks:
+      - internal_net
+      - hidden_net
+  service_scrapper:
+    build: services/scrapper/
+    image: microservices/service_scrapper:1.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 100MB
+    networks:
+      - hidden_net
+  service_cleansing:
+    build: services/cleansing/
+    image: microservices/service_cleansing:1.0
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 500MB
+    networks:
+      - hidden_net
+
+
+
+networks:
+  online_net: # responsible for what should be appear to the outside world.
+  internal_net: # responsible for communications between api and internal microservices.
+  hidden_net: # responsible for communications between services internally.
