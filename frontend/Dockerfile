@@ -10,10 +10,8 @@ COPY ./ /app
 
 WORKDIR /app
 
-RUN npm install --prod --quiet --no-progress
-RUN npm uninstall --save-dev angular-cli
-RUN npm install --save-dev @angular/cli@latest
-RUN ng build --prod --aot
+RUN npm install --quiet --no-progress
+RUN ng build -prod --aot
 RUN mv ./dist /dist
 RUN rm -rf /app
 RUN npm cache clean --force
