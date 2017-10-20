@@ -17,8 +17,8 @@ WORKDIR /app
 
 RUN pip3 install -r requirements.txt
 
-ENV DJ_DEBUG=""
-
 EXPOSE 8000
+
+VOLUME /app/__database
 
 CMD ["uwsgi", "--ini", "uwsgi.ini"]
