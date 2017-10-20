@@ -34,7 +34,7 @@ services:
       - online_net
       - internal_net
     volumes:
-      - ./__database:/app/__database
+      - ./__database:/app/__database:rw,Z
     environment:
       DJ_DEBUG: ''
   service_api:
@@ -50,9 +50,6 @@ services:
         limits:
           cpus: "0.5"
           memory: 10MB
-    depends_on:
-      - service_cleansing
-      - service_scrapper
     environment:
       ENTRYPOINTS: "service_scrapper,service_cleansing"
       SCHEME: "http"
@@ -60,6 +57,8 @@ services:
       - internal_net
       - hidden_net
   service_scrapper:
+    depends_on:
+      - service_api
     volumes:
       - ./services/scrapper/:/app
     build: services/scrapper/
@@ -78,6 +77,8 @@ services:
       SERVICE_API: "service_api"
       API_SCHEME: "http"
   service_cleansing:
+    depends_on:
+      - service_api
     volumes:
       - ./services/cleansing/:/app
     build: services/cleansing/

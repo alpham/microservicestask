@@ -31,6 +31,7 @@ __init()
 @app.route('/')
 def index():
     links = []
+    __init()
     for rule in app.url_map.iter_rules():
         if rule.defaults:
             kw = rule.defaults.copy()

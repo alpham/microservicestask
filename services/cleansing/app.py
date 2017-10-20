@@ -2,7 +2,7 @@ from flask import Flask, jsonify, url_for, request
 import json
 
 app = Flask(__name__)
-
+SERVICE_NAME = 'cleansing'
 
 @app.route('/')
 def index():
@@ -21,13 +21,20 @@ def index():
             continue
         url = url_for(rule.endpoint, **options)
         links.append((rule.endpoint, {"url": url, 'methods': list(rule.methods)}))
-    return jsonify({'cleansing': dict(links)})
+    return jsonify({SERVICE_NAME: dict(links)})
 
 
 @app.route('/clean/price')
 def clean_price():
-    price = request.args.get('price', default='0', type=str)
-    rtn = ''.join([d for d in price if d.isdigit() or d in ['.']])
+    value = request.args.get('value', default='0', type=str)
+    rtn = ''.join([d for d in value if d.isdigit() or d in ['.']])
+    return rtn
+
+
+@app.route('/clean/name')
+def clean_name():
+    value = request.args.get('value', default='', type=str)
+    rtn = value.strip()
     return rtn
 
 

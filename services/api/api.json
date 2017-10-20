@@ -1,1 +1,1 @@
-{}
+{"cleansing": {"clean_name": {"url": "http://service_cleansing/clean/name", "methods": ["OPTIONS", "HEAD", "GET"]}, "clean_price": {"url": "http://service_cleansing/clean/price", "methods": ["OPTIONS", "HEAD", "GET"]}, "index": {"url": "http://service_cleansing/", "methods": ["OPTIONS", "HEAD", "GET"]}}, "scrapper": {"search": {"url": "http://service_scrapper/search", "methods": ["OPTIONS", "GET", "HEAD"]}, "index": {"url": "http://service_scrapper/", "methods": ["OPTIONS", "GET", "HEAD"]}}}
