@@ -36,3 +36,4 @@ class ProductsSpider(scrapy.Spider):
         if next_page is not None:
             next_page_url = self._get_url(page=next())
             yield response.follow(next_page_url, self.parse)
+

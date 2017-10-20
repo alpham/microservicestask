@@ -1,10 +1,15 @@
 import os
 import requests
-
+import logging
+logging.basicConfig()
+logger = logging.getLogger(__name__)
 
 def __handshake__():
     url = '{}://{}/'.format(__scheme, __api_url)
+    logger.critical('vvvvvvvvvvvvvvv')
+    logging.critical(url)
     res = requests.get(url)
+    logger.critical('xxxxxx')
     return res.json()
 
 
@@ -15,11 +20,12 @@ __api_map = {}
 
 def __update():
     global __api_map
+    logger.critical('yyyyyyyyyyy')
     __api_map = __handshake__()
 
-
+logger.critical('wwwwwwwwww')
 __update()
-
+logger.critical(';khjsgasdhl')
 
 def services():
     return __api_map['services']

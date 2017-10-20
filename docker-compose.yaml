@@ -70,7 +70,7 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "1.0"
+          cpus: "0.5"
           memory: 100MB
     networks:
       - hidden_net

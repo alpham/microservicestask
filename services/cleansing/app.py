@@ -1,9 +1,5 @@
-from flask import Flask, jsonify, url_for,request
+from flask import Flask, jsonify, url_for, request
 import json
-import logging
-logging.basicConfig()
-
-logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
@@ -31,9 +27,7 @@ def index():
 @app.route('/clean/price')
 def clean_price():
     price = request.args.get('price', default='0', type=str)
-    logging.critical(' Cleaning price `{}`'.format(price))
     rtn = ''.join([d for d in price if d.isdigit() or d in ['.']])
-    logger.critical(' Return result: `{}`'.format(rtn))
     return rtn
 
 
