@@ -1,8 +1,9 @@
-from flask import Flask, url_for, jsonify
+from flask import Flask, url_for, jsonify, request
 import requests
 import os
 import json
 import logging
+from communications import services
 
 logging.basicConfig()
 logger = logging.getLogger(__name__)
@@ -23,9 +24,6 @@ def __init():
             logger.critical(' Cannot define `{}`'.format(service))
     with open('api.json', 'w') as f:
         json.dump(json_res, f)
-
-
-__init()
 
 
 @app.route('/')
@@ -51,6 +49,17 @@ def index():
             'api': dict(links),
             'services': json.load(f)
         })
+
+
+@app.route('/search')
+def search():
+    q = request.args.get('q', default='misc', type=str)
+    page = request.args.get('q', default='1', type=int)
+    res = services.call('scrapper/search')({'q': q, 'page': page})
+    if res.status_code:
+        return jsonify(res.json())
+    else:
+        return jsonify({})
 
 
 if __name__ == '__main__':
