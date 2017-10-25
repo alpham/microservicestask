@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    API_HOST: process.env.API_HOST,
 };
