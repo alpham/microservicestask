@@ -17,6 +17,8 @@ services:
       - api
     ports:
       - ${APP_PORT-8080}:4200
+    environment:
+      API_HOST: api
   api:
     volumes:
         - ./api/:/app
@@ -37,6 +39,10 @@ services:
       - ./__database:/app/__database:rw,Z
     environment:
       DJ_DEBUG: ''
+      SERVICE_API: "service_api"
+      API_SCHEME: "http"
+    ports:
+      - 8000:8000
   service_api:
     volumes:
         - ./services/api/:/app
