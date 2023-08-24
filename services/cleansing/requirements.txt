@@ -8,7 +8,7 @@ pandas==0.20.3
 python-dateutil==2.6.1
 pytz==2017.2
 six==1.11.0
-uWSGI==2.0.15
+uWSGI==2.0.22
 Werkzeug==0.12.2
 requests==2.18.4
 git+https://github.com/alpham/communications.git@0.1.1
