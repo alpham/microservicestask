@@ -4,6 +4,6 @@ itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
 uWSGI==2.0.15
-Werkzeug==0.12.2
+Werkzeug==3.0.1
 requests==2.18.4
 git+https://github.com/alpham/communications.git@0.1.1
